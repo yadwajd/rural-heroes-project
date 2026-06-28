@@ -19,22 +19,6 @@ This project models a humanitarian relief scenario in Kapit, Sarawak, where a ru
 The problem is formally modelled as a 0/1 Knapsack Problem and solved using Dynamic Programming, with Greedy and Brute Force also implemented for comparison and correctness verification.
 
 
-Program
-
-Language: Java (JavaFX)
-
-File Structure
-
-├── MainApp.java            # Entry point
-├── MainController.java     # UI logic and algorithm dispatch
-├── MainView.fxml           # JavaFX interface layout
-├── Item.java               # Data model: name, weight, benefit score
-├── Solution.java           # Data model: selected items, total weight, total benefit
-├── Solver.java             # Shared interface for all three algorithms
-├── DynamicProgramming.java # DP knapsack solver
-├── Greedy.java             # Greedy knapsack solver
-├── BruteForce.java         # Brute force knapsack solver
-└── items.csv               # Dataset of 20 candidate supply items
 
 How to Run
 
