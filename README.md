@@ -5,8 +5,7 @@
 An online portfolio documenting the design, analysis, and implementation of a 0/1 Knapsack
 solution for a simulated disaster relief scenario in Kapit, Sarawak.
 
-🔗 **Live site:** add your GitHub Pages link here once deployed
-(e.g. `https://<your-username>.github.io/<repo-name>/`)
+🔗 **Live site:** https://yadwajd.github.io/rural-heroes-project/
 
 ---
 
