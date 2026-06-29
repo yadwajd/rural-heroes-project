@@ -87,12 +87,30 @@ Lists all sources cited throughout the report, referenced inline as numbered sup
 
 ```
 .
-├── index.html              # Main report — all sections live here
+├── index.html                  # Main report — all sections live here
 ├── css/
-│   └── styles.css          # Bootstrap 5 + custom styling
+│   └── styles.css              # Bootstrap 5 + custom styling
 ├── js/
-│   └── scripts.js          # Sidebar toggle + section switching logic
-├── assets/                 # Images: logo, member photos, diagrams, screenshots
+│   └── scripts.js              # Sidebar toggle + section switching logic
+├── assets/                     # Logo, member photos, diagrams, demo screenshots
+├── items.csv                   # Candidate supply items dataset (name, weight, benefit score)
+├── pom.xml                     # Maven project configuration (JavaFX dependencies)
+├── src/
+│   └── main/
+│       ├── java/
+│       │   ├── module-info.java
+│       │   └── com/ccs4202/project/ruralheroesproject/
+│       │       ├── MainApp.java            # JavaFX application entry point
+│       │       ├── MainController.java     # UI controller — handles input, runs solvers, displays results
+│       │       ├── Item.java                # Data model: name, weight, benefit score
+│       │       ├── Solution.java             # Data model: chosen items, total weight, total benefit
+│       │       ├── Solver.java               # Shared interface implemented by all three algorithms
+│       │       ├── BruteForce.java           # Exhaustive recursive solver
+│       │       ├── Greedy.java               # Ratio-based greedy solver
+│       │       └── DynamicProgramming.java   # Bottom-up DP solver (optimal)
+│       └── resources/
+│           └── com/ccs4202/project/ruralheroesproject/
+│               └── MainView.fxml           # JavaFX interface layout
 └── README.md
 ```
 
