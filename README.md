@@ -14,7 +14,7 @@ solution for a simulated disaster relief scenario in Kapit, Sarawak.
 A landslide has cut off a rural village in Kapit, Sarawak, and the Malaysian Relief Agency (MRA)
 can send only a single supply truck with a 200 kg capacity. With more candidate supply items than
 the truck can carry, the relief team must choose the combination of items that delivers the
-greatest benefit to the village — a classic **0/1 Knapsack Problem**.
+greatest benefit to the village, a classic **0/1 Knapsack Problem**.
 
 This repository contains the full project report, presented as an interactive single-page website
 rather than a static document, alongside the Java/JavaFX application that implements and compares
@@ -45,8 +45,8 @@ constraint considered). Includes an input-process-output diagram and the full 20
 each item's weight and benefit score.
 
 ### Algorithm Specification
-Reviews six candidate approaches — Sorting, Divide and Conquer, Greedy, Dynamic Programming, Graph
-Algorithms, and Brute Force — assessing each for suitability against the 0/1 Knapsack problem.
+Reviews six candidate approaches which are Sorting, Divide and Conquer, Greedy, Dynamic Programming, Graph
+Algorithms, and Brute Force, assessing each for suitability against the 0/1 Knapsack problem.
 Concludes with a justification for choosing **Dynamic Programming**, including why the problem is
 NP-hard in general but solvable here in practical pseudo-polynomial time, O(n × W).
 
@@ -65,8 +65,8 @@ comparing DP's output against Brute Force's exhaustive search on the same datase
 ### Implementation & Demonstration
 Documents the JavaFX desktop application that implements all three algorithms, including its file
 structure, key classes and methods, and how a run flows from button click to displayed result.
-Walks through the application step by step with screenshots — loading the dataset, entering truck
-capacity, and running Brute Force, Greedy, and Dynamic Programming — followed by a results summary
+Walks through the application step by step with screenshots of loading the dataset, entering truck
+capacity, and running Brute Force, Greedy, and Dynamic Programming, followed by a results summary
 comparing all three outputs side by side.
 
 ### Algorithm Analysis
@@ -76,7 +76,7 @@ runtimes captured in the Demonstration section.
 
 ### Conclusion
 Summarises the project's findings: Dynamic Programming matched Brute Force's optimal result while
-running far faster, and outperformed Greedy's sub-optimal solution — confirming it as the most
+running far faster, and outperformed Greedy's sub-optimal solution, confirming it as the most
 practical algorithm for this scenario.
 
 ### References
@@ -105,8 +105,8 @@ No build step or server is required — it's a static site.
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/<your-username>/<repo-name>.git
-   cd <repo-name>
+   git clone https://github.com/yadwajd/rural-heroes-project.git
+   cd rural-heroes-project
    ```
 2. Open `index.html` directly in a browser, **or** serve it locally:
    ```bash
@@ -127,15 +127,18 @@ three algorithms discussed in the report:
 See the **Implementation & Demonstration** and **Algorithm Design** sections of the portfolio for
 full pseudocode, class breakdowns, and compile/run instructions.
 
-## Group Members
+## Group Members / Role
 
-See the **Home** page of the portfolio for member names, roles, and photos.
+- Muhammad Hairie bin Hazlee / Project Leader, Problem Analyst
+- Ariz Amirudin Bin Mohammad Tony / Algorithm Designer and Developr
+- Muhammad Adam Mustaffa bin Ali / Algorithm Design and Developer
+- Iyad Wajdi bin Mohd Azidan / Analysis and Portfolio Lead
 
 ## Course Information
 
 - **Course:** CCS4202 - Design and Analysis of Algorithms
 - **Project type:** Group Project
-- **Lecturer:** [Lecturer's Name]
+- **Lecturer:** Assoc. Prof. Dr. Razali bin Yaakob
 
 ## License
 
