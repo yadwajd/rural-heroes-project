@@ -60,39 +60,43 @@
                         <!-- Group members -->
                         <h2 class="mb-4">Group Members</h2>
                         <div class="row g-4 mb-4">
-
+ 
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="card h-100 text-center member-card">
                                     <img src="assets/hairie.png" class="card-img-top member-photo" alt="Member 1 photo" />
                                     <div class="card-body">
                                         <h5 class="card-title mb-1">Muhammad Hairie bin Hazlee</h5>
+                                        <p class="card-text text-muted">Project Leader, Problem Analyst</p>
                                     </div>
                                 </div>
                             </div>
-
+ 
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="card h-100 text-center member-card">
                                     <img src="assets/ariz.png" class="card-img-top member-photo" alt="Member 2 photo" />
                                     <div class="card-body">
                                         <h5 class="card-title mb-1">Ariz Amirudin Bin Mohammad Tony</h5>
+                                        <p class="card-text text-muted">Algorithm Designer & Developer</p>
                                     </div>
                                 </div>
                             </div>
-
+ 
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="card h-100 text-center member-card">
                                     <img src="assets/adam.png" class="card-img-top member-photo member-photo-adam" alt="Member 3 photo" />
                                     <div class="card-body">
                                         <h5 class="card-title mb-1">Muhammad Adam Mustaffa bin Ali</h5>
+                                        <p class="card-text text-muted">Algorithm Designer & Developer</p>
                                     </div>
                                 </div>
                             </div>
-
+ 
                             <div class="col-12 col-sm-6 col-lg-3">
                                 <div class="card h-100 text-center member-card">
                                     <img src="assets/iyad.png" class="card-img-top member-photo member-photo-iyad" alt="Member 4 photo" />
                                     <div class="card-body">
                                         <h5 class="card-title mb-1">Iyad Wajdi bin Mohd Azidan</h5>
+                                        <p class="card-text text-muted">Analysis & Portfolio Lead</p>
                                     </div>
                                 </div>
                             </div>
@@ -683,6 +687,65 @@ END ALGORITHM</code></pre>
                             of 4,020 cells. The exact timings are also affected by factors outside Big-O notation, such as object
                             allocation overhead in Brute Force's recursive calls, but the overall ordering of the three algorithms
                             matches what their time complexities predict.
+                        </p>
+                        <h2 class="h4 mt-4">Why Greedy Fails to Reach the Optimal Solution</h2>
+                        <p>
+                            The root cause of Greedy's sub-optimal result lies in how it makes decisions. Greedy sorts items by
+                            benefit-to-weight ratio and commits to each item permanently, in order, without ever reconsidering an
+                            earlier choice. This works well for the fractional Knapsack problem, where a partial
+                            item can be taken to exactly fill any leftover capacity. But in the 0/1 version used
+                            in this project, an item must be taken whole or not at all, so once Greedy has filled the truck close
+                            to capacity with high-ratio items, it has no way to "split" the next item to use up the remaining
+                            space. Any leftover capacity that is too small for the next item on the sorted list is simply wasted.
+                        </p>
+
+                        <h3 class="h6 text-uppercase text-muted mt-3">Where the Two Solutions Diverge</h3>
+                        <p>
+                            Comparing the actual item lists shows both algorithms agree on the two highest-ratio items,
+                            Medical Supply Box and Relief Supply Pallet (140&nbsp;kg / 645 benefit combined), but disagree on how
+                            to use the remaining capacity:
+                        </p>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Chosen by</th>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Weight (kg)</th>
+                                        <th scope="col">Benefit Score</th>
+                                        <th scope="col">Ratio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td rowspan="2">Greedy only</td><td>Hygiene Kit</td><td>20</td><td>90</td><td>4.50</td></tr>
+                                    <tr><td>Family Food Box</td><td>35</td><td>154</td><td>4.40</td></tr>
+                                    <tr class="table-light"><td colspan="2"><strong>Subtotal</strong></td><td><strong>55</strong></td><td><strong>244</strong></td><td>&mdash;</td></tr>
+                                    <tr><td rowspan="2">Dynamic Programming only</td><td>Water Bottle Pack</td><td>50</td><td>220</td><td>4.40</td></tr>
+                                    <tr><td>First Aid Kit</td><td>8</td><td>30</td><td>3.75</td></tr>
+                                    <tr class="table-light"><td colspan="2"><strong>Subtotal</strong></td><td><strong>58</strong></td><td><strong>250</strong></td><td>&mdash;</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p>
+                            Individually, Hygiene Kit and Family Food Box both have higher score-to-weight ratios than Water
+                            Bottle Pack, which is exactly why Greedy picks them first, they look like the better deal item by
+                            item. But that pairing only uses 55 of the remaining 58&nbsp;kg efficiently, leaving 5&nbsp;kg of the
+                            200&nbsp;kg truck empty because Water Bottle Pack (50&nbsp;kg) no longer fits after Greedy has already
+                            spent the space elsewhere. Dynamic Programming considers the combination as a whole rather than item
+                            by item, and finds that swapping in Water Bottle Pack and First Aid Kit uses 3&nbsp;kg more of the
+                            truck (198&nbsp;kg vs. 195&nbsp;kg) while returning 6 more benefit points (250 vs. 244) for that
+                            portion of the load, benefit Greedy leaves on the table entirely.
+                        </p>
+                        <p>
+                            More fundamentally, Greedy's strategy is only locally optimal: at each step it picks the item
+                            that looks best right now, without evaluating how that choice affects which combinations remain
+                            possible later, and it never backtracks to undo an earlier pick even when a different combination
+                            would use the truck's space more effectively. Dynamic Programming avoids this problem entirely because
+                            its <code>dp[i][c]</code> table evaluates both possibilities, including item i or excluding
+                            it, for every remaining capacity, rather than committing early. This is precisely the optimal
+                            substructure argument proven in Algorithm Correctness: Greedy only ever explores one branch of that
+                            decision, while Dynamic Programming explores and compares both, which is why it is structurally
+                            guaranteed to match or beat Greedy on every 0/1 Knapsack instance.
                         </p>
                     </section>
 
